@@ -6,9 +6,20 @@
   --glass: rgba(255,255,255,0.7);
 }
 
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;}
-body{background:linear-gradient(180deg,#ffeaff 0%, #f0f8ff 100%); color:var(--text); overflow-x:hidden;}
+body {
+    margin: 0;
+    padding: 0;
+    /* Fondo de ladrillos usando una textura repetitiva */
+    background-image: 
+        linear-gradient(rgba(226, 54, 54, 0.8), rgba(1, 86, 179, 0.6)), /* Filtro rojo a azul vivo */
+        url('https://www.transparenttextures.com/patterns/brick-wall.png'); 
+    background-color: #e23636; /* Rojo base vibrante */
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 
 /* Header */
 .site-header{position:relative;z-index:10;padding:28px 16px;text-align:center}
