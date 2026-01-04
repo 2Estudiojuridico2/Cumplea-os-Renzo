@@ -8,24 +8,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 </head>
 <body>
- <div id="intro-overlay">
-    <audio id="thwip-sound" src="https://www.myinstants.com/media/sounds/spiderman-ps4-web-shoot.mp3" preload="auto"></audio>
-
-    <div class="comic-border-effect"></div>
-    <div class="web-background"></div>
-    
-    <div class="intro-content">
-        <div class="spidey-hero-frame">
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZueXp6Z3R4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/m2Xunx9A79M5P1zT0Z/giphy.gif" alt="Spidey">
-            <div class="web-line"></div> </div>
-
-        <h2 class="intro-title">¡RENZO TE NECESITA!</h2>
-        <p class="intro-subtitle">LA MISIÓN COMIENZA AQUÍ</p>
-        
-        <button onclick="abrirInvitacion()" class="btn-spider-action">
-            <span>ACEPTAR MISIÓN</span>
-        </button>
+<div id="intro-overlay">
+    <div class="code-background">
+        <div class="code-line"><span class="number">1</span> index-html: {</div>
+        <div class="code-line"><span class="number">2</span>   Spider-Man Spider-Man</div>
+        <div class="code-line"><span class="number">3</span> }</div>
+        <div class="code-line"><span class="number">6</span> intro: (SPIDER-MAN) {</div>
+        <div class="code-line green">   ¡Te necesito para una misión!</div>
+        <div class="code-line"><span class="number">3</span> }</div>
+        <div class="code-line"><span class="number">4</span> get_intro_overlay (status) {</div>
+        <div class="code-line green">   loading: 100% ==> success</div>
+        <div class="code-line"><span class="number">15</span> }</div>
     </div>
+
+    <div class="intro-content">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZueXp6Z3R4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/m2Xunx9A79M5P1zT0Z/giphy.gif" 
+             id="intro-spidey" alt="Spidey">
+        
+        <h2 class="intro-title">¡RENZO TE NECESITA!</h2>
+        <button onclick="abrirInvitacion()" class="btn-spider-action">ACEPTAR MISIÓN</button>
+    </div>
+
+    <audio id="thwip-sound" src="https://www.myinstants.com/media/sounds/spiderman-ps4-web-shoot.mp3" preload="auto"></audio>
 </div>
 
   <img src="spider1.webp" class="spidey-swing" alt="Spiderman">
