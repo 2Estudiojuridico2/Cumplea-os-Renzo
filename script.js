@@ -30,3 +30,23 @@ document.addEventListener('click', function(e) {
         setTimeout(() => web.remove(), 800);
     }, 10);
 });
+// Función para abrir la invitación con sonido
+function abrirInvitacion() {
+    const overlay = document.getElementById('intro-overlay');
+    
+    // Crear el sonido de telaraña "Thwip"
+    const audio = new Audio('https://www.myinstants.com/media/sounds/spiderman-ps4-web-shoot.mp3');
+    audio.volume = 0.5;
+    audio.play();
+
+    overlay.classList.add('overlay-hidden');
+}
+
+// Movimiento aleatorio para el Spidi que patrulla (opcional para hacerlo más dinámico)
+const spidi = document.querySelector('.spidey-swing');
+if(spidi) {
+    setInterval(() => {
+        const randomY = Math.floor(Math.random() * 50);
+        spidi.style.top = (50 + randomY) + 'px';
+    }, 3000);
+}
