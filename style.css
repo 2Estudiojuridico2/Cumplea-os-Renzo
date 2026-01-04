@@ -225,3 +225,24 @@ body {
     transform: translateY(-100%);
     opacity: 0;
 }
+#intro-spidey {
+    width: 200px;
+    position: absolute;
+    top: -20px; /* Ajustado para que se vea el hilo */
+    animation: swingIntro 3s infinite ease-in-out;
+    transform-origin: top center;
+    z-index: 5;
+}
+
+/* Asegura que el contenedor de la intro esté por encima de todo */
+#intro-overlay {
+    visibility: visible; /* Asegura que se vea al cargar */
+}
+
+/* Si usas la clase overlay-hidden, asegúrate que oculte la visibilidad al final */
+.overlay-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden; 
+    transition: transform 1s ease-in, opacity 1s, visibility 1s 1s;
+}
