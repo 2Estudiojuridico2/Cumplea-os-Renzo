@@ -2,66 +2,323 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portada - Cumple de Renzo</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cumple de Renzo - 3 Años</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* --- ESTILOS GENERALES --- */
+    :root {
+      --spidey-red: #e23636;
+      --spidey-blue: #0156b3;
+      --comic-yellow: #f9d837;
+      --dark: #111;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--spidey-blue);
+      /* Patrón de fondo opcional */
+      background-image: radial-gradient(circle, #0264ce 10%, transparent 10%), radial-gradient(circle, #0264ce 10%, transparent 10%);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Bangers', cursive;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    /* --- HERO / INVITACIÓN --- */
+    .hero-container {
+      max-width: 800px;
+      margin: 20px auto;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .comic-card {
+      background: white;
+      border: 6px solid var(--dark);
+      border-radius: 15px;
+      box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+      overflow: hidden;
+      position: relative;
+      margin: 0 10px;
+    }
+
+    .card-header {
+      background: var(--spidey-red);
+      padding: 20px;
+      border-bottom: 4px solid var(--dark);
+    }
+
+    .card-header h1 {
+      font-size: 2.5rem;
+      color: var(--comic-yellow);
+      text-shadow: 3px 3px 0px var(--dark);
+    }
+
+    /* Foto de Perfil con borde de cómic */
+    .profile-img-container {
+      width: 180px;
+      height: 180px;
+      margin: -50px auto 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      background-color: #ddd; /* Color mientras carga */
+    }
+
+    .card-body {
+      padding: 20px;
+      color: var(--dark);
+    }
+
+    .intro-text {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      background: #f0f8ff;
+      padding: 15px;
+      border-radius: 10px;
+      border: 2px dashed var(--spidey-blue);
+    }
+
+    .details-box {
+      background: var(--comic-yellow);
+      padding: 15px;
+      border: 3px solid var(--dark);
+      transform: rotate(-1deg);
+      margin-bottom: 20px;
+    }
+
+    .details-box h3 {
+      font-size: 1.5rem;
+      color: var(--spidey-red);
+      text-shadow: 1px 1px 0 #fff;
+    }
+
+    .details-list {
+      list-style: none;
+      padding: 0;
+      font-size: 1.1rem;
+      text-align: left;
+      display: inline-block;
+    }
+    
+    .details-list li { margin-bottom: 8px; }
+
+    .warning-box {
+      background: #ffcccc;
+      color: #990000;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-top: 15px;
+    }
+
+    /* BOTÓN MAPA */
+    .btn-action {
+      display: block;
+      width: 80%;
+      margin: 20px auto;
+      background: var(--spidey-red);
+      color: white;
+      padding: 15px;
+      text-decoration: none;
+      font-family: 'Bangers', cursive;
+      font-size: 1.5rem;
+      border-radius: 50px;
+      border: 3px solid var(--dark);
+      transition: transform 0.2s;
+    }
+
+    .btn-action:hover {
+      transform: scale(1.05);
+      background: #ff4444;
+    }
+
+    /* --- CAMINO DE LOS ÁLBUMES (TU IDEA MEJORADA) --- */
+    .timeline-section {
+      margin-top: 50px;
+      padding: 40px 10px;
+      background: linear-gradient(to bottom, var(--spidey-blue), #000);
+      text-align: center;
+      position: relative;
+    }
+
+    .path-container {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      padding: 20px 0;
+    }
+
+    /* Línea vertical para móviles */
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: white;
+      transform: translateX(-50%);
+      border-radius: 3px;
+    }
+
+    .album-node {
+      position: relative;
+      margin: 30px 0;
+      z-index: 2;
+    }
+
+    .album-btn {
+      display: inline-block;
+      background: var(--comic-yellow);
+      color: var(--dark);
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-family: 'Bangers', cursive;
+      font-size: 1.2rem;
+      text-decoration: none;
+      border: 3px solid var(--dark);
+      box-shadow: 5px 5px 0 var(--spidey-red);
+      transition: all 0.3s;
+      width: 180px;
+    }
+
+    .album-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 5px 10px 0 var(--spidey-red);
+    }
+
+    /* --- GALERÍA DE FLYERS --- */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 20px;
+      background: #fff;
+    }
+    
+    .gallery img {
+      width: 150px;
+      height: auto;
+      border: 4px solid var(--dark);
+      transform: rotate(2deg);
+    }
+    .gallery img:nth-child(even) { transform: rotate(-2deg); }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      background: #000;
+      color: #666;
+    }
+
+    /* --- Animaciones flotantes --- */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    .floating { animation: float 3s ease-in-out infinite; }
+
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <h1>Bienvenido al Cumple de Renzo</h1>
-    <p class="subtitle">Sigue el camino y entra a los álbumes — ¡comienza la aventura!</p>
+
+  <header class="hero-container">
+    
+    <div class="comic-card">
+      <div class="card-header">
+        <h1>🕸️ ¡Llamado a todos los Superhéroes! 🕸️</h1>
+      </div>
+
+      <div class="profile-img-container">
+        <img src="foto-renzo-perfil.jpg" alt="Renzo 3 años" class="profile-img">
+      </div>
+
+      <div class="card-body">
+        <div class="intro-text">
+          <p><strong>¡Nuestra araña favorita cumple 3 años!</strong></p>
+          <p>Renzo necesita a su equipo para una misión acuática de alto riesgo. 💦🕷️</p>
+        </div>
+
+        <div class="details-box">
+          <h3>📋 DETALLES DE LA MISIÓN</h3>
+          <ul class="details-list">
+            <li>📅 <strong>DÍA:</strong> Sábado 24 de enero</li>
+            <li>🕚 <strong>HORARIO:</strong> De 11:00 a 19:00 hs.</li>
+            <li>📍 <strong>LUGAR:</strong> Jujuy 1032 - Luis Guillón</li>
+          </ul>
+        </div>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Jujuy+1032+Luis+Guillon" target="_blank" class="btn-action floating">
+          📍 VER MAPA / CÓMO LLEGAR
+        </a>
+
+        <div class="warning-box">
+          ⚠️ EQUIPAMIENTO OBLIGATORIO:<br>
+          🩱 Malla | 🧼 Toallón | 🎈 Alitas | 🦄 ¡Traé tu inflable favorito!
+        </div>
+        
+        <p style="margin-top:15px; font-weight:bold; color:var(--spidey-red)">
+          ¡Tu sentido arácnido te dice que no podés faltar! 🤟💥
+        </p>
+      </div>
+    </div>
   </header>
 
-  <!-- Fondo animado: capas de ciudad -->
-  <div class="city-bg">
-    <div class="city-layer layer-1"></div>
-    <div class="city-layer layer-2"></div>
-    <div class="city-layer layer-3"></div>
-    <div class="city-sky"></div>
-  </div>
-
-  <!-- Camino con botones -->
-  <main class="cover">
-    <section class="cover-card">
-      <div class="cover-left">
-        <img src="images/FOTO_PRINCIPAL_RENZO_3.png" alt="Renzo 3 años" class="hero-img">
+  <main class="timeline-section">
+    <h2>📸 El Camino de Renzo 📸</h2>
+    <p style="margin-bottom:30px">Explora los recuerdos de años anteriores</p>
+    
+    <div class="path-container">
+      <div class="timeline-line"></div>
+      
+      <div class="album-node">
+        <a href="#hero-container" class="album-btn" style="background:white; color:var(--spidey-red)">🌟 3 Años (HOY)</a>
       </div>
 
-      <div class="cover-right">
-        <svg class="path-svg" viewBox="0 0 800 200" preserveAspectRatio="none" aria-hidden="true">
-          <path id="thePath" d="M20,160 C200,20 600,20 780,160" stroke="rgba(255,255,255,0.15)" stroke-width="12" fill="none" stroke-linecap="round"/>
-        </svg>
-
-        <!-- Botones alineados sobre el camino (position absolute) -->
-        <div class="path-buttons">
-          <a class="path-btn" style="left:6%" href="album-3.html">Álbum 3 años</a>
-          <a class="path-btn" style="left:40%" href="album-2.html">Álbum 2 años</a>
-          <a class="path-btn" style="left:78%" href="album-1.html">Álbum 1 año</a>
-        </div>
-
-        <div class="cover-instructions">
-          <p>Haz click en cualquiera de los puntos del camino para abrir el álbum correspondiente.</p>
-          <p class="small">Consejo: optimiza las imágenes (600–1200px) para una carga más rápida.</p>
-        </div>
+      <div class="album-node">
+        <a href="album-2.html" class="album-btn">🕸️ Álbum 2 años</a>
       </div>
-    </section>
+
+      <div class="album-node">
+        <a href="album-1.html" class="album-btn">🍼 Álbum 1 año</a>
+      </div>
+    </div>
   </main>
 
+  <section class="gallery">
+      <img src="1000195922.jpg" alt="Flyer Pileta">
+      <img src="1000195925.jpg" alt="Flyer Equipo">
+      <img src="1000195915.jpg" alt="Decoración">
+  </section>
+
   <footer class="site-footer">
-    <p>Creando una serie de álbumes para los cumpleaños de Renzo — ¡más por venir!</p>
+    <p>Desarrollado para el Super Cumple de Renzo</p>
   </footer>
 
-  <script>
-    // Pequeño script para animar un punto sobre la ruta (decorativo)
-    (function() {
-      const path = document.getElementById('thePath');
-      const btns = document.querySelectorAll('.path-btn');
-      // Opcional: mostrar tooltip al pasar
-      btns.forEach(b=>{
-        b.addEventListener('mouseenter', ()=> b.classList.add('hover'));
-        b.addEventListener('mouseleave', ()=> b.classList.remove('hover'));
-      });
-    })();
-  </script>
 </body>
 </html>
