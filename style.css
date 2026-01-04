@@ -3,19 +3,40 @@
   --spidey-blue: #0156b3;
   --comic-yellow: #f9d837;
 }
-
 body {
   margin: 0;
   padding: 0;
   font-family: 'Bangers', cursive;
-  background-color: var(--spidey-red);
+  /* Fondo de ladrillos con colores saturados */
+  background-color: #e23636; 
   background-image: 
-    linear-gradient(rgba(1, 86, 179, 0.5), rgba(0, 0, 0, 0.7)), 
+    linear-gradient(rgba(1, 86, 179, 0.4), rgba(0, 0, 0, 0.6)), 
     url('https://www.transparenttextures.com/patterns/brick-wall.png');
   background-attachment: fixed;
   display: flex;
   justify-content: center;
   min-height: 100vh;
+}
+
+/* Efecto para que las fotos parezcan viñetas de cómic */
+.comic-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border: 4px solid #000;
+  box-shadow: 6px 6px 0px #f9d837; /* Sombra amarilla sólida */
+  transition: transform 0.3s;
+}
+
+.comic-img:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas en el celu */
+  gap: 15px;
+  padding: 15px;
 }
 
 .invitation-card {
