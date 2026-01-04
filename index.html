@@ -8,16 +8,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="intro-overlay">
-    <div class="web-animation">🕸️</div>
-    
-    <img src="spider1.webp" id="intro-spidey" alt="Spiderman">
+ <div id="intro-overlay">
+    <audio id="thwip-sound" src="https://www.myinstants.com/media/sounds/spiderman-ps4-web-shoot.mp3" preload="auto"></audio>
+
+    <div class="comic-border-effect"></div>
+    <div class="web-background"></div>
     
     <div class="intro-content">
-      <h2 class="intro-title">¡RENZO TE NECESITA!</h2>
-      <button onclick="abrirInvitacion()" class="btn-start">ACEPTAR MISIÓN</button>
+        <div class="spidey-hero-frame">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZueXp6Z3R4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/m2Xunx9A79M5P1zT0Z/giphy.gif" alt="Spidey">
+            <div class="web-line"></div> </div>
+
+        <h2 class="intro-title">¡RENZO TE NECESITA!</h2>
+        <p class="intro-subtitle">LA MISIÓN COMIENZA AQUÍ</p>
+        
+        <button onclick="abrirInvitacion()" class="btn-spider-action">
+            <span>ACEPTAR MISIÓN</span>
+        </button>
     </div>
-  </div>
+</div>
 
   <img src="spider1.webp" class="spidey-swing" alt="Spiderman">
 
