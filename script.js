@@ -1,11 +1,12 @@
 // Función para abrir la invitación con sonido
 function abrirInvitacion() {
     const overlay = document.getElementById('intro-overlay');
-    
-    // Crear y reproducir sonido "Thwip"
-    const audio = new Audio('https://www.myinstants.com/media/sounds/spiderman-ps4-web-shoot.mp3');
-    audio.volume = 0.5;
-    audio.play().catch(e => console.log("Audio listo"));
+    const sound = document.getElementById('thwip-sound');
+
+    if (sound) {
+        sound.currentTime = 0;
+        sound.play().catch(e => console.log("Interacción necesaria para audio"));
+    }
 
     overlay.classList.add('overlay-hidden');
 }
