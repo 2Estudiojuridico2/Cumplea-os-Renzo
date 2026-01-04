@@ -1,14 +1,17 @@
+--/* 1. VARIABLES Y BASE */
 :root {
   --spidey-red: #e23636;
   --spidey-blue: #0156b3;
   --comic-yellow: #f9d837;
+  --code-green: #28a745;
+  --bg-gray: #d3d3d3;
 }
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Bangers', cursive;
-  /* Fondo de ladrillos con colores saturados */
-  background-color: #e23636; 
+  background-color: var(--spidey-red);
   background-image: 
     linear-gradient(rgba(1, 86, 179, 0.4), rgba(0, 0, 0, 0.6)), 
     url('https://www.transparenttextures.com/patterns/brick-wall.png');
@@ -16,80 +19,103 @@ body {
   display: flex;
   justify-content: center;
   min-height: 100vh;
+  overflow-x: hidden;
 }
+
+/* 2. OVERLAY (PANTALLA DE INICIO ESTILO CÓDIGO) */
 #intro-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000; /* Fondo negro para que resalte Spidi */
-  z-index: 9999;
+  inset: 0;
+  background-color: var(--bg-gray);
+  z-index: 10000;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 1s ease-out, visibility 1s;
+  transition: transform 1s cubic-bezier(0.9, 0, 0.1, 1);
 }
 
+.code-background {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  text-align: left;
+  opacity: 0.5;
+  pointer-events: none;
+  font-family: 'Courier New', monospace;
+}
+
+.code-line {
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.code-line.green {
+  color: var(--code-green);
+  font-weight: bold;
+}
+
+/* 3. ANIMACIONES DE SPIDEY */
+#intro-spidey {
+  width: 220px;
+  position: relative;
+  z-index: 5;
+  animation: swingIntro 3s infinite ease-in-out;
+  transform-origin: top center;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+}
+
+/* El hilo de telaraña */
+.intro-content::before {
+  content: "";
+  position: absolute;
+  top: -500px;
+  left: 50%;
+  width: 2px;
+  height: 520px;
+  background: white;
+  z-index: 4;
+  box-shadow: 0 0 5px white;
+}
+
+@keyframes swingIntro {
+  0% { transform: rotate(-20deg); }
+  50% { transform: rotate(20deg); }
+  100% { transform: rotate(-20deg); }
+}
+
+/* 4. BOTÓN Y TEXTOS DEL OVERLAY */
 .intro-content {
+  position: relative;
   text-align: center;
+  z-index: 10;
 }
 
-.intro-spidey {
-  width: 250px;
-  animation: zoomSpidey 2s infinite alternate;
+.intro-title {
+  color: var(--spidey-red);
+  font-size: 3.5rem;
+  text-shadow: 3px 3px 0 #000;
+  margin: 10px 0;
 }
 
-.intro-text {
-  color: #f9d837;
-  font-family: 'Bangers', cursive;
-  font-size: 2.5rem;
-  margin-top: 20px;
-}
-
-.intro-btn {
-  background: #e23636;
+.btn-spider-action {
+  background: var(--code-green);
   color: white;
-  border: 4px solid #fff;
-  padding: 15px 30px;
   font-family: 'Bangers', cursive;
-  font-size: 1.5rem;
-  cursor: pointer;
-  border-radius: 10px;
-}
-
-@keyframes zoomSpidey {
-  from { transform: scale(1); }
-  to { transform: scale(1.2); }
-}
-
-/* Clase para ocultar la intro */
-.hidden-intro {
-  opacity: 0;
-  visibility: hidden;
-}
-
-/* Efecto para que las fotos parezcan viñetas de cómic */
-.comic-img {
-  width: 100%;
-  aspect-ratio: 1/1;
-  object-fit: cover;
+  font-size: 2rem;
+  padding: 15px 40px;
   border: 4px solid #000;
-  box-shadow: 6px 6px 0px #f9d837; /* Sombra amarilla sólida */
-  transition: transform 0.3s;
+  cursor: pointer;
+  box-shadow: 6px 6px 0px #000;
+  transition: 0.2s;
 }
 
-.comic-img:hover {
-  transform: scale(1.05) rotate(2deg);
+.btn-spider-action:active {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0px #000;
 }
 
-.grid-layout {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Dos columnas en el celu */
-  gap: 15px;
-  padding: 15px;
-}
-
+/* 5. TARJETA DE INVITACIÓN PRINCIPAL */
 .invitation-card {
   background: white;
   border: 6px solid #000;
@@ -100,6 +126,8 @@ body {
   box-shadow: 12px 12px 0px var(--comic-yellow);
   text-align: center;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .card-header {
@@ -109,324 +137,43 @@ body {
   border-bottom: 6px solid #000;
 }
 
-.profile-img {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  border: 5px solid var(--spidey-red);
-  margin-top: 20px;
-  box-shadow: 5px 5px 0 #000;
-}
-
-.mission-box {
-  background: var(--comic-yellow);
+/* 6. GALERÍA Y FOTOS */
+.comic-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
   border: 4px solid #000;
-  margin: 20px;
-  padding: 15px;
-  transform: rotate(-1deg);
-  color: #000;
+  box-shadow: 5px 5px 0px var(--comic-yellow);
+  transition: 0.3s;
 }
 
-.btn-maps {
-  display: inline-block;
-  background: var(--spidey-red);
-  color: white;
-  padding: 15px 25px;
-  text-decoration: none;
-  border: 4px solid #000;
-  border-radius: 50px;
-  font-size: 1.4rem;
-  box-shadow: 4px 4px 0 var(--spidey-blue);
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  padding: 20px;
 }
 
+/* 7. SPIDEY QUE PATRULLA */
 .spidey-swing {
   position: fixed;
-  top: 20px;
+  top: 40px;
   width: 100px;
-  animation: swing 6s infinite ease-in-out;
-  z-index: 100;
+  z-index: 200;
+  pointer-events: none;
+  animation: patrol 10s infinite linear;
 }
 
-@keyframes swing {
-  0% { left: -100px; transform: rotate(15deg); }
-  100% { left: 100%; transform: rotate(-15deg); }
-}
-/* Estilos del Overlay */
-#intro-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, #222, #000);
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.8s;
+@keyframes patrol {
+  0% { left: -150px; transform: scaleX(1); }
+  49% { transform: scaleX(1); }
+  50% { left: 110%; transform: scaleX(-1); }
+  99% { transform: scaleX(-1); }
+  100% { left: -150px; }
 }
 
-/* Animación de la Telaraña de fondo */
-.web-animation {
-    position: absolute;
-    font-size: 500px;
-    opacity: 0.1;
-    animation: webZoom 4s infinite ease-out;
-    pointer-events: none;
-}
-
-@keyframes webZoom {
-    0% { transform: scale(0.5); opacity: 0; }
-    50% { opacity: 0.2; }
-    100% { transform: scale(3); opacity: 0; }
-}
-
-/* Spiderman balanceándose en la intro */
-#intro-spidey {
-    width: 200px;
-    position: absolute;
-    top: -50px;
-    animation: swingIntro 3s infinite ease-in-out;
-    transform-origin: top center;
-}
-
-@keyframes swingIntro {
-    0% { transform: rotate(-30deg); }
-    50% { transform: rotate(30deg); }
-    100% { transform: rotate(-30deg); }
-}
-
-/* Título y Botón */
-.intro-title {
-    color: #f9d837;
-    font-family: 'Bangers', cursive;
-    font-size: 3rem;
-    text-shadow: 4px 4px 0 #e23636;
-    margin-bottom: 20px;
-    z-index: 10;
-}
-
-.btn-start {
-    background: #e23636;
-    color: white;
-    font-family: 'Bangers', cursive;
-    font-size: 1.8rem;
-    padding: 15px 40px;
-    border: 4px solid #fff;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 0 20px #e23636;
-    z-index: 10;
-}
-
-/* Clase para que la pantalla se "abra" hacia arriba */
+/* CLASE PARA OCULTAR OVERLAY */
 .overlay-hidden {
-    transform: translateY(-100%);
-    opacity: 0;
-}
-#intro-spidey {
-    width: 200px;
-    position: absolute;
-    top: -20px; /* Ajustado para que se vea el hilo */
-    animation: swingIntro 3s infinite ease-in-out;
-    transform-origin: top center;
-    z-index: 5;
-}
-
-/* Asegura que el contenedor de la intro esté por encima de todo */
-#intro-overlay {
-    visibility: visible; /* Asegura que se vea al cargar */
-}
-
-/* Si usas la clase overlay-hidden, asegúrate que oculte la visibilidad al final */
-.overlay-hidden {
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden; 
-    transition: transform 1s ease-in, opacity 1s, visibility 1s 1s;
-}
-.spidey-swing, #intro-spidey {
-    /* Este filtro ayuda a eliminar restos de blanco en GIFs transparentes */
-    filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.5)); 
-    mix-blend-mode: multiply; /* Si el fondo es blanco puro, esto lo hace invisible */
-    mix-blend-mode: normal; /* Usa normal si el GIF ya es transparente */
-}
-
-/* Animación más suave y pareja */
-@keyframes swing {
-    0% { left: -150px; transform: rotate(15deg) translateY(0px); }
-    50% { transform: rotate(-15deg) translateY(20px); }
-    100% { left: 110%; transform: rotate(15deg) translateY(0px); }
-}
-/* PANTALLA TOTAL OVERLAY */
-#intro-overlay {
-    position: fixed;
-    inset: 0;
-    background: #111;
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    transition: transform 0.8s cubic-bezier(0.9, 0, 0.1, 1);
-}
-
-/* EFECTO BORDES DE CÓMIC */
-.comic-border-effect {
-    position: absolute;
-    inset: 10px;
-    border: 5px solid #000;
-    pointer-events: none;
-    z-index: 2;
-}
-
-/* TELARAÑA DE FONDO */
-.web-background {
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background-image: radial-gradient(circle, transparent 20%, #111 20%), 
-                      repeating-linear-gradient(45deg, #222 0, #222 1px, transparent 0, transparent 50%);
-    background-size: 100px 100px;
-    opacity: 0.3;
-}
-
-/* CONTENEDOR DE SPIDEY BALANCEÁNDOSE */
-.spidey-hero-frame {
-    position: relative;
-    width: 250px;
-    margin: 0 auto;
-    animation: swingHigh 3s infinite ease-in-out;
-    transform-origin: top center;
-}
-
-.web-line {
-    position: absolute;
-    top: -500px;
-    left: 50%;
-    width: 2px;
-    height: 500px;
-    background: #fff;
-    box-shadow: 0 0 10px #fff;
-}
-
-@keyframes swingHigh {
-    0% { transform: rotate(-25deg); }
-    50% { transform: rotate(25deg); }
-    100% { transform: rotate(-25deg); }
-}
-
-/* BOTÓN ESTILO CÓMIC */
-.btn-spider-action {
-    background: #e23636;
-    color: #fff;
-    font-family: 'Bangers', cursive;
-    font-size: 2rem;
-    padding: 15px 40px;
-    border: 4px solid #000;
-    cursor: pointer;
-    position: relative;
-    box-shadow: 8px 8px 0 #0156b3;
-    transition: 0.2s;
-    margin-top: 30px;
-}
-
-.btn-spider-action:active {
-    transform: translate(4px, 4px);
-    box-shadow: 4px 4px 0 #0156b3;
-}
-
-/* TÍTULOS VIVOS */
-.intro-title {
-    font-size: 4rem;
-    color: #f9d837;
-    text-shadow: 5px 5px 0 #000;
-    margin: 0;
-}
-
-.intro-subtitle {
-    color: #fff;
-    letter-spacing: 5px;
-    font-size: 1.2rem;
-}
-
-/* SALIDA DEL OVERLAY */
-.overlay-hidden {
-    transform: translateY(-100%);
-}
-/* ESTILO DEL FONDO DE CÓDIGO (OVERLAY) */
-#intro-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: #d3d3d3; /* El gris claro de tu imagen */
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Courier New', Courier, monospace; /* Letra de código */
-    transition: transform 0.8s ease-in-out;
-}
-
-.code-background {
-    position: absolute;
-    top: 50px;
-    left: 20px;
-    text-align: left;
-    opacity: 0.6;
-    pointer-events: none;
-}
-
-.code-line {
-    color: #333;
-    font-size: 14px;
-    margin-bottom: 5px;
-    white-space: pre;
-}
-
-.code-line .number {
-    color: #888;
-    margin-right: 15px;
-}
-
-.code-line.green {
-    color: #28a745; /* El verde de tu imagen */
-    font-weight: bold;
-}
-
-/* CONTENIDO SOBRE EL CÓDIGO */
-.intro-content {
-    z-index: 10;
-    text-align: center;
-    background: rgba(211, 211, 211, 0.8); /* Fondo semi-transparente para leer mejor */
-    padding: 20px;
-    border-radius: 20px;
-}
-
-#intro-spidey {
-    width: 200px;
-    animation: swingIntro 3s infinite ease-in-out;
-    transform-origin: top center;
-}
-
-.intro-title {
-    color: #e23636;
-    font-family: 'Bangers', cursive;
-    font-size: 3.5rem;
-    text-shadow: 2px 2px 0 #000;
-}
-
-.btn-spider-action {
-    background: #28a745; /* Verde como el código para combinar */
-    color: white;
-    font-family: 'Bangers', cursive;
-    font-size: 2rem;
-    padding: 15px 40px;
-    border: 4px solid #000;
-    cursor: pointer;
-    box-shadow: 5px 5px 0 #000;
-}
-
-.overlay-hidden {
-    transform: translateY(-100%);
+  transform: translateY(-100%);
+  visibility: hidden;
 }
