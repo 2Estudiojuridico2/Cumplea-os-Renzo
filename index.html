@@ -1,305 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Super Cumple de Renzo!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
-    <style>
-        /* --- ESTILOS CSS (Diseño Cómic) --- */
-        :root {
-            --spidey-red: #e23636;
-            --spidey-blue: #0156b3;
-            --comic-yellow: #f9d837;
-            --dark-border: #111;
-        }
-
-        body {
-            font-family: 'Bangers', cursive; /* Fuente estilo cómic */
-            background-color: var(--spidey-blue); /* Fondo azul como la decoración */
-            /* Patrón de fondo opcional para darle textura */
-            background-image: radial-gradient(circle, #0264ce 10%, transparent 10%), radial-gradient(circle, #0264ce 10%, transparent 10%);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: white;
-            letter-spacing: 1px;
-        }
-
-        /* Contenedor Principal tipo Viñeta de Cómic */
-        .comic-card {
-            background-color: #fff;
-            border: 6px solid var(--dark-border);
-            border-radius: 15px;
-            max-width: 500px;
-            width: 100%;
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Encabezado */
-        .header {
-            background-color: var(--spidey-red); /* Rojo Spiderman */
-            padding: 25px 15px;
-            text-align: center;
-            border-bottom: 5px solid var(--dark-border);
-            transform: skewY(-2deg); /* Un pequeño ángulo para efecto dinámico */
-            margin-top: -10px;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            text-transform: uppercase;
-            color: var(--comic-yellow); /* Título amarillo */
-            text-shadow: 3px 3px 0px var(--dark-border);
-            transform: skewY(2deg); /* Corregimos el ángulo del texto */
-        }
-
-        /* Sección de la Foto Principal */
-        .hero-section {
-            padding: 30px 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        .renzo-photo {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            border: 5px solid var(--spidey-blue);
-            object-fit: cover;
-            box-shadow: 5px 5px 0px var(--dark-border);
-            z-index: 1;
-            position: relative;
-        }
-
-        /* Burbuja de diálogo tipo cómic */
-        .speech-bubble {
-            position: absolute;
-            top: 10px;
-            right: 5%;
-            background-color: #fff;
-            color: var(--dark-border);
-            padding: 15px;
-            border-radius: 20px;
-            border: 3px solid var(--dark-border);
-            font-size: 1.1em;
-            max-width: 180px;
-            box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
-            z-index: 2;
-        }
-        .speech-bubble::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 30px;
-            border-width: 15px 15px 0;
-            border-style: solid;
-            border-color: var(--dark-border) transparent;
-            display: block;
-            width: 0;
-        }
-        .speech-bubble::before {
-            content: '';
-            position: absolute;
-            bottom: -11px;
-            left: 33px;
-            border-width: 12px 12px 0;
-            border-style: solid;
-            border-color: #fff transparent;
-            display: block;
-            width: 0;
-            z-index: 1;
-        }
-
-        /* Sección de Detalles del Evento */
-        .details-section {
-            background-color: var(--comic-yellow);
-            color: var(--dark-border);
-            padding: 25px;
-            border-top: 5px solid var(--dark-border);
-            border-bottom: 5px solid var(--dark-border);
-            position: relative;
-        }
-
-        .details-title {
-            font-size: 1.8em;
-            color: var(--spidey-red);
-            margin-bottom: 20px;
-            text-align: center;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 0px var(--dark-border);
-        }
-
-        .info-list {
-            list-style: none;
-            padding: 0;
-            font-size: 1.3em;
-        }
-
-        .info-list li {
-            margin-bottom: 12px;
-            padding-left: 30px;
-            position: relative;
-        }
-
-        /* Iconos para la lista */
-        .info-list li::before {
-            content: '🕷️';
-            position: absolute;
-            left: 0;
-            top: 2px;
-        }
-
-        /* Botón de Mapa */
-        .map-button-container {
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .map-button {
-            display: inline-block;
-            padding: 15px 35px;
-            background-color: var(--spidey-red);
-            color: var(--comic-yellow);
-            text-decoration: none;
-            font-size: 1.6em;
-            border: 4px solid var(--dark-border);
-            border-radius: 50px;
-            box-shadow: 6px 6px 0px var(--dark-border);
-            transition: all 0.2s;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-
-        .map-button:hover {
-            transform: translate(3px, 3px);
-            box-shadow: 3px 3px 0px var(--dark-border);
-            background-color: #ff4444;
-        }
-        
-        .map-button:active {
-            transform: translate(6px, 6px);
-            box-shadow: none;
-        }
-
-        /* Sección de Galería */
-        .gallery-section {
-            padding: 25px;
-            background-color: #fff;
-        }
-
-        .gallery-title {
-            font-size: 1.6em;
-            color: var(--spidey-blue);
-            margin-bottom: 20px;
-            text-align: center;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 0px var(--dark-border);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 15px;
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border: 3px solid var(--dark-border);
-            border-radius: 8px;
-            box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
-        }
-        .gallery-img:hover {
-            transform: scale(1.05) rotate(2deg); /* Efecto al pasar el mouse */
-        }
-
-        /* Pie de Página */
-        .footer {
-            background-color: var(--spidey-blue);
-            color: var(--comic-yellow);
-            padding: 15px;
-            text-align: center;
-            border-top: 5px solid var(--dark-border);
-            font-size: 1.2em;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>¡Super Cumple de Renzo!</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="comic-card">
-        <header class="header">
-            <h1>¡LLAMADO A TODOS LOS SUPERHÉROES!</h1>
-        </header>
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnd6ZzR6NHR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/3o7TKpxSreXv8eL2G4/giphy.gif" class="spidey-swing" alt="Spiderman">
 
-        <section class="hero-section">
-            <div class="speech-bubble">
-                ¡Hola equipo! Soy Renzo, ¡prepárense para la acción!
-            </div>
-            <img src="image_1.png" alt="Renzo el cumpleañero" class="renzo-photo">
-        </section>
+  <main class="invitation-card">
+    <header class="card-header">
+      <h1>¡RENZO CUMPLE 3!</h1>
+    </header>
 
-        <section class="details-section">
-            <h2 class="details-title">⚡ MISIÓN: CUMPLE Nº 3 ⚡</h2>
-            <ul class="info-list">
-                <li>📅 <strong>FECHA:</strong> Sábado 24 de Enero</li>
-                <li>⏰ <strong>HORA:</strong> De 11:00 am a 7:00 pm</li>
-                <li>📍 <strong>LUGAR:</strong> Calle de la Araña, Lote 3</li>
-            </ul>
+    <section class="profile-section">
+      <img src="images/1000194542.jpg" alt="Renzo" class="profile-img">
+      <p class="intro-text">🕸️ ¡LLAMADO A TODOS LOS SUPERHÉROES! 🕸️</p>
+    </section>
 
-            <div class="map-button-container">
-                <a href="TU_ENLACE_AQUI" target="_blank" class="map-button" id="map-btn">
-                    🗺️ VER UBICACIÓN
-                </a>
-            </div>
+    <section class="mission-box">
+      <p>📍 <strong>COORDENADAS:</strong> Jujuy 1032 - Luis Guillón</p>
+      <p>📅 <strong>DÍA:</strong> Sábado 24 de enero</p>
+      <p>🕚 <strong>HORARIO:</strong> De 11:00 a 19:00 hs.</p>
+    </section>
 
-            <div style="background:#fff; padding:15px; border:3px solid var(--dark-border); border-radius:10px;">
-                <h3 style="color:var(--spidey-red); margin-top:0;">⚠️ EQUIPAMIENTO OBLIGATORIO:</h3>
-                <p style="font-size:1.2em; line-height:1.4;">Malla, toallón, protector solar, alitas o tu inflable favorito.</p>
-            </div>
-        </section>
-
-        <section class="gallery-section">
-            <h3 class="gallery-title">GALERÍA ARÁCNIDA</h3>
-            <div class="gallery-grid">
-                <img src="image_3.png" alt="Invitación Piscina" class="gallery-img">
-                <img src="image_2.png" alt="Decoración Cumpleaños" class="gallery-img">
-                <img src="image_4.png" alt="Spider-Man nadando" class="gallery-img">
-                <img src="image_0.png" alt="Invitación Cómic" class="gallery-img">
-            </div>
-        </section>
-
-        <footer class="footer">
-            ¡PREPÁRATE PARA UN DÍA INCREÍBLE! ¡LOS ESPERO!
-        </footer>
+    <div class="actions">
+      <a href="https://www.google.com/maps/search/?api=1&query=Jujuy+1032+Luis+Guillon" target="_blank" class="btn-maps">
+        📍 VER CUARTEL GENERAL
+      </a>
     </div>
 
-    <script>
-        const mapBtn = document.getElementById('map-btn');
+    <div class="equipment-alert">
+      ⚠️ EQUIPAMIENTO OBLIGATORIO: <br>
+      🩱 Malla | 🧼 Toallón | 🎈 Alitas | 🦄 ¡Traé tu inflable!
+    </div>
 
-        // Agregamos un evento 'click' al botón del mapa
-        mapBtn.addEventListener('click', function(event) {
-            // Esta es una validación simple. Si el enlace sigue siendo el marcador de posición,
-            // mostramos una alerta y evitamos que navegue.
-            if (this.getAttribute('href') === 'TU_ENLACE_AQUI') {
-                event.preventDefault(); // Evita que el enlace funcione
-                alert('¡Atención Superhéroe! \nNo olvides pegar el enlace real de Google Maps en el código antes de enviar la invitación.');
-            } else {
-                // Aquí puedes añadir efectos adicionales, como un sonido
-                console.log('Abriendo el mapa para la misión...');
-            }
-        });
-    </script>
+    <nav class="album-path">
+      <h3>Explora mi camino:</h3>
+      <div class="path-buttons">
+        <a href="album-1.html" class="path-btn">1 Año</a>
+        <a href="album-2.html" class="path-btn">2 Años</a>
+        <a href="#" class="path-btn active">3 Años</a>
+      </div>
+    </nav>
+  </main>
 
+  <script src="script.js"></script>
 </body>
 </html>
