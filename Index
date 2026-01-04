@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spider-Cumple de Renzo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="spider-web-bg"></div> <div class="card-container">
+        <header>
+            <div class="spider-badge">RENZO</div>
+            <h1>¡MISIÓN: CELEBRAR MI CUMPLE!</h1>
+        </header>
+
+        <div class="main-photo-frame">
+            <img src="FOTO_PRINCIPAL_RENZO.jpg" alt="Renzo el Héroe" id="hero-img">
+        </div>
+
+        <section class="details">
+            <div class="comic-bubble">
+                <p>Te espero en mi cuartel general para una aventura arácnida.</p>
+            </div>
+            
+            <div class="info-box">
+                <p>📅 <strong>FECHA:</strong> [TU FECHA]</p>
+                <p>⏰ <strong>HORA:</strong> [TU HORA]</p>
+            </div>
+
+            <div class="spider-friends-gallery">
+                <h3>EL SPIDER-TEAM</h3>
+                <div class="grid-friends">
+                    <img src="amigo1.jpg" alt="Miles">
+                    <img src="amigo2.jpg" alt="Gwen">
+                    <img src="amigo3.jpg" alt="Peter">
+                </div>
+            </div>
+
+            <a href="LINK_DE_GOOGLE_MAPS" target="_blank" class="btn-location">
+                📍 VER UBICACIÓN EN MAPA
+            </a>
+        </section>
+
+        <footer>
+            <p>¡Confirma tu asistencia antes de que se acabe el lanza-telarañas!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Efecto interactivo: Al hacer clic suena un "Thwip" (opcional) 
+        // o sale un mensaje de alerta arácnido.
+        document.querySelector('.btn-location').onclick = function() {
+            console.log("Activando rastreador arácnido...");
+        };
+    </script>
+</body>
+</html>
