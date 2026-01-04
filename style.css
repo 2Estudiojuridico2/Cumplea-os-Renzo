@@ -246,3 +246,16 @@ body {
     visibility: hidden; 
     transition: transform 1s ease-in, opacity 1s, visibility 1s 1s;
 }
+.spidey-swing, #intro-spidey {
+    /* Este filtro ayuda a eliminar restos de blanco en GIFs transparentes */
+    filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.5)); 
+    mix-blend-mode: multiply; /* Si el fondo es blanco puro, esto lo hace invisible */
+    mix-blend-mode: normal; /* Usa normal si el GIF ya es transparente */
+}
+
+/* Animación más suave y pareja */
+@keyframes swing {
+    0% { left: -150px; transform: rotate(15deg) translateY(0px); }
+    50% { transform: rotate(-15deg) translateY(20px); }
+    100% { left: 110%; transform: rotate(15deg) translateY(0px); }
+}
