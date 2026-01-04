@@ -18,3 +18,10 @@ document.addEventListener('click', function(e) {
     setTimeout(() => web.remove(), 800);
   }, 10);
 });
+function comenzarMision() {
+  const overlay = document.getElementById('intro-overlay');
+  overlay.classList.add('hidden-intro');
+  
+  // Opcional: Sonido de telaraña si tienes uno
+  console.log("Misión iniciada...");
+}
