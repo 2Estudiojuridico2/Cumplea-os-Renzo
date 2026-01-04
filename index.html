@@ -1,59 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spider - Cumple de Renzo</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portada - Cumple de Renzo</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header class="site-header">
+    <h1>Bienvenido al Cumple de Renzo</h1>
+    <p class="subtitle">Sigue el camino y entra a los álbumes — ¡comienza la aventura!</p>
+  </header>
 
-    <div class="spider-web-bg"></div>
-    <div class="card-container">
-        <header>
-            <div class="spider-badge" aria-hidden="true">RENZO</div>
-            <h1>¡MISIÓN: CELEBRAR MI CUMPLE!</h1>
-        </header>
+  <!-- Fondo animado: capas de ciudad -->
+  <div class="city-bg">
+    <div class="city-layer layer-1"></div>
+    <div class="city-layer layer-2"></div>
+    <div class="city-layer layer-3"></div>
+    <div class="city-sky"></div>
+  </div>
 
-        <div class="main-photo-frame">
-            <img src="FOTO_PRINCIPAL_RENZO.jpg" alt="Renzo el Héroe" id="hero-img">
+  <!-- Camino con botones -->
+  <main class="cover">
+    <section class="cover-card">
+      <div class="cover-left">
+        <img src="images/FOTO_PRINCIPAL_RENZO_3.png" alt="Renzo 3 años" class="hero-img">
+      </div>
+
+      <div class="cover-right">
+        <svg class="path-svg" viewBox="0 0 800 200" preserveAspectRatio="none" aria-hidden="true">
+          <path id="thePath" d="M20,160 C200,20 600,20 780,160" stroke="rgba(255,255,255,0.15)" stroke-width="12" fill="none" stroke-linecap="round"/>
+        </svg>
+
+        <!-- Botones alineados sobre el camino (position absolute) -->
+        <div class="path-buttons">
+          <a class="path-btn" style="left:6%" href="album-3.html">Álbum 3 años</a>
+          <a class="path-btn" style="left:40%" href="album-2.html">Álbum 2 años</a>
+          <a class="path-btn" style="left:78%" href="album-1.html">Álbum 1 año</a>
         </div>
 
-        <section class="details">
-            <div class="comic-bubble" role="note">
-                <p>Te espero en mi cuartel general para una aventura arácnida.</p>
-            </div>
-            
-            <div class="info-box" aria-label="Información del evento">
-                <p>📅 <strong>FECHA:</strong> [TU FECHA]</p>
-                <p>⏰ <strong>HORA:</strong> [TU HORA]</p>
-            </div>
+        <div class="cover-instructions">
+          <p>Haz click en cualquiera de los puntos del camino para abrir el álbum correspondiente.</p>
+          <p class="small">Consejo: optimiza las imágenes (600–1200px) para una carga más rápida.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-            <div class="spider-friends-gallery">
-                <h3>EL SPIDER-TEAM</h3>
-                <div class="grid-friends">
-                    <img src="amigo1.jpg" alt="Miles">
-                    <img src="amigo2.jpg" alt="Gwen">
-                    <img src="amigo3.jpg" alt="Peter">
-                </div>
-            </div>
+  <footer class="site-footer">
+    <p>Creando una serie de álbumes para los cumpleaños de Renzo — ¡más por venir!</p>
+  </footer>
 
-            <a href="LINK_DE_GOOGLE_MAPS" target="_blank" rel="noopener noreferrer" class="btn-location">
-                📍 VER UBICACIÓN EN MAPA
-            </a>
-        </section>
-
-        <footer>
-            <p>¡Confirma tu asistencia antes de que se acabe el lanza-telarañas!</p>
-        </footer>
-    </div>
-
-    <script>
-        // Efecto interactivo ligero
-        document.querySelector('.btn-location').addEventListener('click', function() {
-            console.log("Activando rastreador arácnido...");
-        });
-    </script>
+  <script>
+    // Pequeño script para animar un punto sobre la ruta (decorativo)
+    (function() {
+      const path = document.getElementById('thePath');
+      const btns = document.querySelectorAll('.path-btn');
+      // Opcional: mostrar tooltip al pasar
+      btns.forEach(b=>{
+        b.addEventListener('mouseenter', ()=> b.classList.add('hover'));
+        b.addEventListener('mouseleave', ()=> b.classList.remove('hover'));
+      });
+    })();
+  </script>
 </body>
 </html>
