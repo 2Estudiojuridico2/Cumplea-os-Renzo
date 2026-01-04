@@ -156,14 +156,16 @@ body {
 
 /* 7. SPIDEY QUE PATRULLA */
 .spidey-swing {
-  position: fixed;
-  top: 40px;
-  width: 100px;
-  z-index: 200;
-  pointer-events: none;
-  animation: patrol 10s infinite linear;
+    position: fixed;
+    top: 40px;
+    width: 120px; /* Ajusta el tamaño si es necesario */
+    z-index: 200;
+    pointer-events: none;
+    animation: patrol 10s infinite linear;
+    /* Esto ayuda a limpiar bordes si la imagen tiene fondo blanco */
+    mix-blend-mode: multiply; 
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
 }
-
 @keyframes patrol {
   0% { left: -150px; transform: scaleX(1); }
   49% { transform: scaleX(1); }
