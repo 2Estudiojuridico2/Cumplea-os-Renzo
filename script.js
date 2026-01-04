@@ -50,3 +50,16 @@ if(spidi) {
         spidi.style.top = (50 + randomY) + 'px';
     }, 3000);
 }
+function abrirInvitacion() {
+    const overlay = document.getElementById('intro-overlay');
+    const thwip = document.getElementById('thwip-sound');
+
+    // Reproducir sonido inmediatamente al click
+    if (thwip) {
+        thwip.currentTime = 0; // Reinicia el audio por si acaso
+        thwip.play().catch(e => console.log("Audio bloqueado por el navegador"));
+    }
+
+    // Efecto de salida
+    overlay.classList.add('overlay-hidden');
+}
