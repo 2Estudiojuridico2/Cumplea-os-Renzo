@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spider-Cumple de Renzo</title>
+    <title>Spider - Cumple de Renzo</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="spider-web-bg"></div> <div class="card-container">
+    <div class="spider-web-bg"></div>
+    <div class="card-container">
         <header>
-            <div class="spider-badge">RENZO</div>
+            <div class="spider-badge" aria-hidden="true">RENZO</div>
             <h1>¡MISIÓN: CELEBRAR MI CUMPLE!</h1>
         </header>
 
@@ -20,11 +21,11 @@
         </div>
 
         <section class="details">
-            <div class="comic-bubble">
+            <div class="comic-bubble" role="note">
                 <p>Te espero en mi cuartel general para una aventura arácnida.</p>
             </div>
             
-            <div class="info-box">
+            <div class="info-box" aria-label="Información del evento">
                 <p>📅 <strong>FECHA:</strong> [TU FECHA]</p>
                 <p>⏰ <strong>HORA:</strong> [TU HORA]</p>
             </div>
@@ -38,7 +39,7 @@
                 </div>
             </div>
 
-            <a href="LINK_DE_GOOGLE_MAPS" target="_blank" class="btn-location">
+            <a href="LINK_DE_GOOGLE_MAPS" target="_blank" rel="noopener noreferrer" class="btn-location">
                 📍 VER UBICACIÓN EN MAPA
             </a>
         </section>
@@ -49,11 +50,10 @@
     </div>
 
     <script>
-        // Efecto interactivo: Al hacer clic suena un "Thwip" (opcional) 
-        // o sale un mensaje de alerta arácnido.
-        document.querySelector('.btn-location').onclick = function() {
+        // Efecto interactivo ligero
+        document.querySelector('.btn-location').addEventListener('click', function() {
             console.log("Activando rastreador arácnido...");
-        };
+        });
     </script>
 </body>
 </html>
