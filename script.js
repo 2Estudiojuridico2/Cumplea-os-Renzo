@@ -1,45 +1,47 @@
-// Función para abrir la invitación con sonido
+// 1. FUNCIÓN PRINCIPAL: ABRIR Y REPRODUCIR SONIDO
 function abrirInvitacion() {
     const overlay = document.getElementById('intro-overlay');
-    const sound = document.getElementById('thwip-sound');
+    
+    // CREAR AUDIO EN EL MOMENTO DEL CLIC (Esto evita bloqueos del navegador)
+    const thwip = new Audio('https://www.myinstants.com/media/sounds/spiderman-ps4-web-shoot.mp3');
+    thwip.volume = 0.6;
+    thwip.play().catch(error => {
+        console.log("El navegador no permitió el audio automático, pero la invitación se abrirá.");
+    });
 
-    if (sound) {
-        sound.currentTime = 0;
-        sound.play().catch(e => console.log("Interacción necesaria para audio"));
+    // Ocultar la pantalla de carga
+    if (overlay) {
+        overlay.classList.add('overlay-hidden');
     }
-
-    overlay.classList.add('overlay-hidden');
 }
 
-// Efecto de telarañas al hacer clic
+// 2. EFECTO DE TELARAÑAS AL TOCAR LA PANTALLA
 document.addEventListener('click', function(e) {
+    // Verificamos que la invitación ya esté abierta
     const overlay = document.getElementById('intro-overlay');
     if (overlay && !overlay.classList.contains('overlay-hidden')) return;
 
+    // Crear elemento div para la telaraña
     const web = document.createElement('div');
     web.innerHTML = '🕸️';
     web.style.position = 'fixed';
-    web.style.left = (e.clientX - 30) + 'px';
-    web.style.top = (e.clientY - 30) + 'px';
-    web.style.fontSize = '60px';
-    web.style.pointerEvents = 'none';
+    web.style.left = (e.clientX - 20) + 'px';
+    web.style.top = (e.clientY - 20) + 'px';
+    web.style.fontSize = '50px';
+    web.style.pointerEvents = 'none'; // Para que no interfiera con otros clics
     web.style.zIndex = '9999';
-    web.style.transition = 'all 0.8s ease-out';
+    web.style.transition = 'transform 0.5s, opacity 0.5s';
     
     document.body.appendChild(web);
 
+    // Animación corta
     setTimeout(() => {
-        web.style.transform = 'translateY(-50px) scale(1.5)';
+        web.style.transform = 'scale(1.5) rotate(20deg)';
         web.style.opacity = '0';
-        setTimeout(() => web.remove(), 800);
-    }, 10);
-});
+    }, 50);
 
-// Movimiento dinámico para Spidey Patrulla
-setInterval(() => {
-    const spidi = document.querySelector('.spidey-swing');
-    if(spidi) {
-        const randomY = Math.floor(Math.random() * 40);
-        spidi.style.top = (40 + randomY) + 'px';
-    }
-}, 2000);
+    // Eliminar del código después de 1 segundo
+    setTimeout(() => {
+        web.remove();
+    }, 1000);
+});
