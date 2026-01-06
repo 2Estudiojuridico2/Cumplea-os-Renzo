@@ -1,88 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>¡Super Cumple de Renzo!</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>¡Super Misión: Renzo Cumple 3!</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 </head>
 <body>
+
 <div id="intro-overlay">
     <div class="code-background">
-        <div class="code-line"><span class="number">1</span> index-html: {</div>
-        <div class="code-line"><span class="number">2</span>   Spider-Man Spider-Man</div>
-        <div class="code-line"><span class="number">3</span> }</div>
-        <div class="code-line"><span class="number">6</span> intro: (SPIDER-MAN) {</div>
-        <div class="code-line green">   ¡Te necesito para una misión!</div>
-        <div class="code-line"><span class="number">3</span> }</div>
-        <div class="code-line"><span class="number">4</span> get_intro_overlay (status) {</div>
-        <div class="code-line green">   loading: 100% ==> success</div>
-        <div class="code-line"><span class="number">15</span> }</div>
+        <div class="code-line"><span class="number">01</span> > INITIALIZING_HERO_PROTOCOL...</div>
+        <div class="code-line green">> TARGET: RENZO_AGE_3</div>
+        <div class="code-line green">> STATUS: PARTY_READY</div>
     </div>
-
     <div class="intro-content">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZueXp6Z3R4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/m2Xunx9A79M5P1zT0Z/giphy.gif" 
-             id="intro-spidey" alt="Spidey">
-        
+        <div class="spidey-hero-frame">
+            <img src="spider1.webp" id="intro-spidey" alt="Spidey">
+            <div class="web-line"></div>
+        </div>
         <h1 class="intro-title">¡RENZO TE NECESITA!</h1>
         <button onclick="abrirInvitacion()" class="btn-spider-action">ACEPTAR MISIÓN</button>
     </div>
-
-    <audio id="thwip-sound" src="https://www.myinstants.com/media/sounds/spiderman-ps4-web-shoot.mp3" preload="auto"></audio>
 </div>
 
-  <img src="spider1.webp" class="spidey-swing" alt="Spiderman">
+<div class="patrol-container">
+    <div class="web-thread"></div>
+    <img src="spider1.webp" class="spidey-swinging" alt="Spiderman">
+</div>
 
-  <main class="invitation-card">
-    <header class="card-header">
-      <h1>¡RENZO CUMPLE 3!</h1>
-    </header>
-
-    <section class="profile-section">
-      <img src="" alt="Renzo" class="profile-img">
-      <p class="intro-text">🕸️ ¡LLAMADO A TODOS LOS SUPERHÉROES! 🕸️</p>
+<main class="comic-book">
+    <section class="comic-page">
+        <div class="page-content">
+            <div class="comic-header">¡RENZO CUMPLE 3!</div>
+            <img src="images/1000194542.jpg" alt="Renzo" class="profile-img">
+            <div class="pow-label">¡POW!</div>
+            <p class="mission-text">🕸️ ¡LLAMADO A TODOS LOS SUPERHÉROES! 🕸️</p>
+        </div>
     </section>
 
-    <section class="mission-box">
-      <p>📍 <strong>COORDENADAS:</strong> Jujuy 1032 - Luis Guillón</p>
-      <p>📅 <strong>DÍA:</strong> Sábado 24 de enero</p>
-      <p>🕚 <strong>HORARIO:</strong> De 11:00 a 19:00 hs.</p>
+    <section class="comic-page">
+        <div class="page-content">
+            <div class="mission-box">
+                <h2>📍 COORDENADAS</h2>
+                <p>Jujuy 1032 - Luis Guillón</p>
+                <h2>📅 DÍA Y HORA</h2>
+                <p>Sábado 24 de enero<br>11:00 a 19:00 hs.</p>
+            </div>
+            <a href="https://maps.google.com/?q=Jujuy+1032+Luis+Guillon" target="_blank" class="btn-maps">VER MAPA</a>
+        </div>
     </section>
-   <section class="gallery-container">
-  <h2 class="gallery-title">¡Misión en Imágenes!</h2>
-  <div class="grid-layout">
-    <img src="" alt="Flyer Cumple" class="comic-img">
-    <img src="" alt="Aventura en el agua" class="comic-img">
-    <img src="" alt="Spidey nadando" class="comic-img">
-    <img src="" alt="Renzo" class="comic-img">
-  </div>
-</section>
 
-    <div class="actions">
-      <a href="https://www.google.com/maps/search/?api=1&query=Jujuy+1032+Luis+Guillon" target="_blank" class="btn-maps">
-        📍 VER CUARTEL GENERAL
-      </a>
-    </div>
+    <section class="comic-page">
+        <div class="page-content">
+            <h2 class="gallery-title">¡MISIÓN EN IMÁGENES!</h2>
+            <div class="grid-layout">
+                <img src="araña.avif" alt="1" class="comic-img">
+                <img src="araña1.webp" alt="2" class="comic-img">
+                <img src="hombre araña nadando.jpeg" alt="3" class="comic-img">
+                <img src="1000194542.jpg" alt="4" class="comic-img">
+            </div>
+        </div>
+    </section>
+</main>
 
-    <div class="equipment-alert">
-      ⚠️ EQUIPAMIENTO OBLIGATORIO: <br>
-      🩱 Malla | 🧼 Toallón | 🎈 Alitas | 🦄 ¡Traé tu inflable!
-    </div>
-
-    <nav class="album-path">
-      <h3>Explora mi camino:</h3>
-      <div class="path-buttons">
-        <a href="album-1.html" class="path-btn">1 Año</a>
-        <a href="album-2.html" class="path-btn">2 Años</a>
-        <a href="#" class="path-btn active">3 Años</a>
-      </div>
-    </nav>
-  </main>
-   <footer>
-    <p>Hecho con ❤️</p>
-  </footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
