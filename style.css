@@ -2,181 +2,86 @@
     --red: #e23636;
     --blue: #0156b3;
     --yellow: #f9d837;
-    --black: #111;
-    --white: #fff;
 }
 
 body {
     margin: 0;
     padding: 0;
     font-family: 'Bangers', cursive;
-    background-color: #333;
-    /* Fondo de pared de ladrillos */
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                      url('https://www.transparenttextures.com/patterns/brick-wall.png');
-    background-attachment: fixed;
+    background: #222 url('https://www.transparenttextures.com/patterns/brick-wall.png');
     height: 100vh;
-    overflow: hidden; /* Evita scroll doble */
+    overflow: hidden; /* Bloquea el scroll vertical del cuerpo */
 }
 
-/* --- OVERLAY DE INICIO --- */
+/* OVERLAY */
 #intro-overlay {
     position: fixed; inset: 0;
-    background-color: #d3d3d3; /* Gris técnico */
-    z-index: 10000;
-    display: flex; flex-direction: column; 
-    justify-content: center; align-items: center;
-    transition: transform 0.8s ease-in-out;
+    background: #d3d3d3; z-index: 1000;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    transition: 0.8s ease-in-out;
 }
-
-.code-background {
-    position: absolute; top: 20px; left: 20px;
-    font-family: 'Courier New', monospace; opacity: 0.5;
-    pointer-events: none;
-}
-.code-line { font-size: 14px; margin-bottom: 5px; color: #333; }
-.code-line.green { color: #00aa00; font-weight: bold; }
-
-.hero-swing-intro img { width: 180px; margin-bottom: 20px; }
-
-.intro-title {
-    font-size: 3.5rem; color: var(--red);
-    text-shadow: 4px 4px 0 var(--black); margin: 0;
-    text-align: center;
-}
-
-.intro-subtitle {
-    font-size: 1.5rem; color: var(--black);
-    letter-spacing: 2px; margin-bottom: 30px;
-}
-
-.btn-spider-action {
-    background: var(--blue); color: var(--white);
-    font-family: 'Bangers', cursive; font-size: 2rem;
-    padding: 15px 40px; border: 4px solid var(--black);
-    box-shadow: 6px 6px 0 var(--red); cursor: pointer;
-    transition: transform 0.1s;
-}
-.btn-spider-action:active { transform: scale(0.95); }
-
 .overlay-hidden { transform: translateY(-100%); }
 
-/* --- CONTENEDOR TIPO LIBRO (Scroll Horizontal) --- */
-.comic-book-container {
+.btn-spider-action {
+    background: var(--red); color: white; padding: 15px 40px;
+    border: 4px solid #000; font-family: 'Bangers'; font-size: 2rem;
+    cursor: pointer; box-shadow: 5px 5px 0 #000;
+}
+
+/* CONTENEDOR DE HOJAS (SCROLL HORIZONTAL) */
+.comic-book-wrapper {
     display: flex;
-    overflow-x: auto; /* Permite deslizar a los lados */
-    scroll-snap-type: x mandatory; /* Efecto imán de página */
-    height: 100vh;
+    overflow-x: scroll; /* Permite scroll horizontal */
+    overflow-y: hidden; /* Evita scroll vertical */
+    scroll-snap-type: x mandatory; /* HACE QUE PASE DE HOJA EN HOJA */
     width: 100vw;
-}
-
-.comic-page {
-    flex: 0 0 100vw; /* Cada página ocupa el 100% del ancho */
     height: 100vh;
-    scroll-snap-align: start;
-    display: flex; justify-content: center; align-items: center;
-    box-sizing: border-box;
-    padding: 20px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Suavidad en iPhone */
 }
 
-/* ESTILO DE LOS PANELES (Viñetas) */
+/* CADA HOJA INDIVIDUAL */
+.comic-page {
+    flex: 0 0 100vw; /* Cada hoja mide exactamente el ancho de la pantalla */
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: start; /* El imán se pega al inicio de la hoja */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* EL PANEL BLANCO DENTRO DE LA HOJA */
 .panel {
-    background: var(--white);
-    border: 8px solid var(--black);
-    width: 100%; max-width: 400px;
+    background: white;
+    border: 6px solid black;
+    width: 85%;
+    max-width: 350px;
     padding: 20px;
-    box-shadow: 10px 10px 0 rgba(0,0,0,0.5);
+    box-shadow: 10px 10px 0 var(--blue);
     text-align: center;
-    position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
 }
 
-.comic-title {
-    color: var(--blue); font-size: 3rem;
-    text-shadow: 3px 3px 0 var(--yellow);
-    margin: 10px 0;
-}
-
-.photo-frame {
-    border: 5px solid var(--black);
-    padding: 5px; background: var(--yellow);
-    transform: rotate(-2deg); margin: 15px 0;
-}
-.hero-photo { width: 100%; height: auto; display: block; }
-
-.speech-bubble {
-    background: var(--white); border: 3px solid var(--black);
-    border-radius: 50%; padding: 15px;
-    display: inline-block; position: relative;
-    font-size: 1.2rem; margin-top: 10px;
-}
-.speech-bubble::after {
-    content: ''; position: absolute; bottom: -10px; left: 50%;
-    border-width: 10px 10px 0; border-style: solid;
-    border-color: var(--black) transparent;
-}
-
-.swipe-hint {
-    margin-top: 20px; font-size: 1.2rem;
-    color: var(--red); animation: bounce 1s infinite;
-}
-
-/* INFO BOXES */
-.info-box {
-    background: var(--yellow); border: 4px solid var(--black);
-    margin: 15px 0; padding: 10px; color: var(--black);
-}
-.rotation-left { transform: rotate(-1deg); }
-.rotation-right { transform: rotate(1deg); }
-
-.btn-maps {
-    display: inline-block; background: var(--red); color: white;
-    text-decoration: none; padding: 10px 20px;
-    border: 3px solid var(--black); border-radius: 20px;
-    margin-top: 10px; font-size: 1.5rem;
-}
-
-/* GALERÍA */
-.gallery-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-}
-.comic-thumb {
-    width: 100%; aspect-ratio: 1/1; object-fit: cover;
-    border: 3px solid var(--black);
-}
-
-.alert-box {
-    background: #eee; border: 2px dashed var(--black);
-    margin-top: 20px; padding: 10px; font-size: 0.9rem;
-}
-
-/* --- ANIMACIÓN SPIDEY QUE PATRULLA --- */
+/* SPIDEY VOLADOR */
 .patrol-container {
     position: fixed; top: -100px; left: -150px;
     z-index: 500; pointer-events: none;
     animation: patrolFly 12s infinite linear;
 }
-
-/* Hilo de la telaraña */
-.web-thread {
-    width: 2px; height: 300px;
-    background: white; margin-left: 50%;
-    box-shadow: 0 0 2px white;
-}
-
-.spidey-flying {
-    width: 120px; display: block;
-    margin-top: -10px;
-    /* TRUCO PARA EL FONDO BLANCO */
-    mix-blend-mode: multiply; 
-}
+.web-thread { width: 2px; height: 300px; background: white; margin-left: 50%; }
+.spidey-flying { width: 100px; mix-blend-mode: multiply; }
 
 @keyframes patrolFly {
-    0% { transform: translateX(0) translateY(0) rotate(5deg); }
-    40% { transform: translateX(60vw) translateY(50px) rotate(-5deg); }
-    60% { transform: translateX(70vw) translateY(30px) rotate(5deg); }
-    100% { transform: translateX(120vw) translateY(0) rotate(-5deg); }
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(110vw) translateY(50px); }
+    100% { transform: translateX(125vw) translateY(0); }
 }
 
-@keyframes bounce { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-5px);} }
+/* DETALLES EXTRA */
+.photo-frame img { width: 100%; border: 4px solid black; }
+.info-box { background: var(--yellow); border: 3px solid black; margin: 10px 0; padding: 5px; }
+.gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.comic-thumb { width: 100%; aspect-ratio: 1/1; object-fit: cover; border: 2px solid black; }
+.btn-maps { background: var(--red); color: white; text-decoration: none; padding: 5px 10px; display: inline-block; border: 2px solid black; margin-top: 5px; }
+.swipe-hint { color: var(--red); animation: blink 1s infinite; margin-top: 10px; }
+@keyframes blink { 50% { opacity: 0; } }
