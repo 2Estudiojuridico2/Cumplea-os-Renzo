@@ -1,181 +1,182 @@
-/* 1. VARIABLES Y BASE */
 :root {
-  --spidey-red: #e23636;
-  --spidey-blue: #0156b3;
-  --comic-yellow: #f9d837;
-  --code-green: #28a745;
-  --bg-gray: #d3d3d3;
+    --red: #e23636;
+    --blue: #0156b3;
+    --yellow: #f9d837;
+    --black: #111;
+    --white: #fff;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Bangers', cursive;
-  background-color: var(--spidey-red);
-  background-image: 
-    linear-gradient(rgba(1, 86, 179, 0.4), rgba(0, 0, 0, 0.6)), 
-    url('https://www.transparenttextures.com/patterns/brick-wall.png');
-  background-attachment: fixed;
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Bangers', cursive;
+    background-color: #333;
+    /* Fondo de pared de ladrillos */
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                      url('https://www.transparenttextures.com/patterns/brick-wall.png');
+    background-attachment: fixed;
+    height: 100vh;
+    overflow: hidden; /* Evita scroll doble */
 }
 
-/* 2. OVERLAY (PANTALLA DE INICIO ESTILO CÓDIGO) */
+/* --- OVERLAY DE INICIO --- */
 #intro-overlay {
-  position: fixed;
-  inset: 0;
-  background-color: var(--bg-gray);
-  z-index: 10000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 1s cubic-bezier(0.9, 0, 0.1, 1);
+    position: fixed; inset: 0;
+    background-color: #d3d3d3; /* Gris técnico */
+    z-index: 10000;
+    display: flex; flex-direction: column; 
+    justify-content: center; align-items: center;
+    transition: transform 0.8s ease-in-out;
 }
 
 .code-background {
-  position: absolute;
-  top: 40px;
-  left: 20px;
-  text-align: left;
-  opacity: 0.5;
-  pointer-events: none;
-  font-family: 'Courier New', monospace;
+    position: absolute; top: 20px; left: 20px;
+    font-family: 'Courier New', monospace; opacity: 0.5;
+    pointer-events: none;
 }
+.code-line { font-size: 14px; margin-bottom: 5px; color: #333; }
+.code-line.green { color: #00aa00; font-weight: bold; }
 
-.code-line {
-  color: #333;
-  font-size: 14px;
-  margin-bottom: 4px;
-}
-
-.code-line.green {
-  color: var(--code-green);
-  font-weight: bold;
-}
-
-/* 3. ANIMACIONES DE SPIDEY */
-#intro-spidey {
-  width: 220px;
-  position: relative;
-  z-index: 5;
-  animation: swingIntro 3s infinite ease-in-out;
-  transform-origin: top center;
-  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
-}
-
-/* El hilo de telaraña */
-.intro-content::before {
-  content: "";
-  position: absolute;
-  top: -500px;
-  left: 50%;
-  width: 2px;
-  height: 520px;
-  background: white;
-  z-index: 4;
-  box-shadow: 0 0 5px white;
-}
-
-@keyframes swingIntro {
-  0% { transform: rotate(-20deg); }
-  50% { transform: rotate(20deg); }
-  100% { transform: rotate(-20deg); }
-}
-
-/* 4. BOTÓN Y TEXTOS DEL OVERLAY */
-.intro-content {
-  position: relative;
-  text-align: center;
-  z-index: 10;
-}
+.hero-swing-intro img { width: 180px; margin-bottom: 20px; }
 
 .intro-title {
-  color: var(--spidey-red);
-  font-size: 3.5rem;
-  text-shadow: 3px 3px 0 #000;
-  margin: 10px 0;
+    font-size: 3.5rem; color: var(--red);
+    text-shadow: 4px 4px 0 var(--black); margin: 0;
+    text-align: center;
+}
+
+.intro-subtitle {
+    font-size: 1.5rem; color: var(--black);
+    letter-spacing: 2px; margin-bottom: 30px;
 }
 
 .btn-spider-action {
-  background: var(--code-green);
-  color: white;
-  font-family: 'Bangers', cursive;
-  font-size: 2rem;
-  padding: 15px 40px;
-  border: 4px solid #000;
-  cursor: pointer;
-  box-shadow: 6px 6px 0px #000;
-  transition: 0.2s;
+    background: var(--blue); color: var(--white);
+    font-family: 'Bangers', cursive; font-size: 2rem;
+    padding: 15px 40px; border: 4px solid var(--black);
+    box-shadow: 6px 6px 0 var(--red); cursor: pointer;
+    transition: transform 0.1s;
+}
+.btn-spider-action:active { transform: scale(0.95); }
+
+.overlay-hidden { transform: translateY(-100%); }
+
+/* --- CONTENEDOR TIPO LIBRO (Scroll Horizontal) --- */
+.comic-book-container {
+    display: flex;
+    overflow-x: auto; /* Permite deslizar a los lados */
+    scroll-snap-type: x mandatory; /* Efecto imán de página */
+    height: 100vh;
+    width: 100vw;
 }
 
-.btn-spider-action:active {
-  transform: translate(4px, 4px);
-  box-shadow: 2px 2px 0px #000;
+.comic-page {
+    flex: 0 0 100vw; /* Cada página ocupa el 100% del ancho */
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex; justify-content: center; align-items: center;
+    box-sizing: border-box;
+    padding: 20px;
 }
 
-/* 5. TARJETA DE INVITACIÓN PRINCIPAL */
-.invitation-card {
-  background: white;
-  border: 6px solid #000;
-  max-width: 450px;
-  width: 90%;
-  margin: 40px 10px;
-  border-radius: 20px;
-  box-shadow: 12px 12px 0px var(--comic-yellow);
-  text-align: center;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
+/* ESTILO DE LOS PANELES (Viñetas) */
+.panel {
+    background: var(--white);
+    border: 8px solid var(--black);
+    width: 100%; max-width: 400px;
+    padding: 20px;
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.5);
+    text-align: center;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
-.card-header {
-  background: var(--spidey-blue);
-  padding: 20px;
-  color: var(--comic-yellow);
-  border-bottom: 6px solid #000;
+.comic-title {
+    color: var(--blue); font-size: 3rem;
+    text-shadow: 3px 3px 0 var(--yellow);
+    margin: 10px 0;
 }
 
-/* 6. GALERÍA Y FOTOS */
-.comic-img {
-  width: 100%;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  border: 4px solid #000;
-  box-shadow: 5px 5px 0px var(--comic-yellow);
-  transition: 0.3s;
+.photo-frame {
+    border: 5px solid var(--black);
+    padding: 5px; background: var(--yellow);
+    transform: rotate(-2deg); margin: 15px 0;
+}
+.hero-photo { width: 100%; height: auto; display: block; }
+
+.speech-bubble {
+    background: var(--white); border: 3px solid var(--black);
+    border-radius: 50%; padding: 15px;
+    display: inline-block; position: relative;
+    font-size: 1.2rem; margin-top: 10px;
+}
+.speech-bubble::after {
+    content: ''; position: absolute; bottom: -10px; left: 50%;
+    border-width: 10px 10px 0; border-style: solid;
+    border-color: var(--black) transparent;
 }
 
-.grid-layout {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  padding: 20px;
+.swipe-hint {
+    margin-top: 20px; font-size: 1.2rem;
+    color: var(--red); animation: bounce 1s infinite;
 }
 
-/* 7. SPIDEY QUE PATRULLA */
-.spidey-swing {
-    position: fixed;
-    top: 40px;
-    width: 120px; /* Ajusta el tamaño si es necesario */
-    z-index: 200;
-    pointer-events: none;
-    animation: patrol 10s infinite linear;
-    /* Esto ayuda a limpiar bordes si la imagen tiene fondo blanco */
+/* INFO BOXES */
+.info-box {
+    background: var(--yellow); border: 4px solid var(--black);
+    margin: 15px 0; padding: 10px; color: var(--black);
+}
+.rotation-left { transform: rotate(-1deg); }
+.rotation-right { transform: rotate(1deg); }
+
+.btn-maps {
+    display: inline-block; background: var(--red); color: white;
+    text-decoration: none; padding: 10px 20px;
+    border: 3px solid var(--black); border-radius: 20px;
+    margin-top: 10px; font-size: 1.5rem;
+}
+
+/* GALERÍA */
+.gallery-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.comic-thumb {
+    width: 100%; aspect-ratio: 1/1; object-fit: cover;
+    border: 3px solid var(--black);
+}
+
+.alert-box {
+    background: #eee; border: 2px dashed var(--black);
+    margin-top: 20px; padding: 10px; font-size: 0.9rem;
+}
+
+/* --- ANIMACIÓN SPIDEY QUE PATRULLA --- */
+.patrol-container {
+    position: fixed; top: -100px; left: -150px;
+    z-index: 500; pointer-events: none;
+    animation: patrolFly 12s infinite linear;
+}
+
+/* Hilo de la telaraña */
+.web-thread {
+    width: 2px; height: 300px;
+    background: white; margin-left: 50%;
+    box-shadow: 0 0 2px white;
+}
+
+.spidey-flying {
+    width: 120px; display: block;
+    margin-top: -10px;
+    /* TRUCO PARA EL FONDO BLANCO */
     mix-blend-mode: multiply; 
-    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
-}
-@keyframes patrol {
-  0% { left: -150px; transform: scaleX(1); }
-  49% { transform: scaleX(1); }
-  50% { left: 110%; transform: scaleX(-1); }
-  99% { transform: scaleX(-1); }
-  100% { left: -150px; }
 }
 
-/* CLASE PARA OCULTAR OVERLAY */
-.overlay-hidden {
-  transform: translateY(-100%);
-  visibility: hidden;
+@keyframes patrolFly {
+    0% { transform: translateX(0) translateY(0) rotate(5deg); }
+    40% { transform: translateX(60vw) translateY(50px) rotate(-5deg); }
+    60% { transform: translateX(70vw) translateY(30px) rotate(5deg); }
+    100% { transform: translateX(120vw) translateY(0) rotate(-5deg); }
 }
+
+@keyframes bounce { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-5px);} }
